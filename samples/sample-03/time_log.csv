@@ -1,0 +1,4 @@
+task,before_min_per_week,after_min_per_week,saved_min_per_week
+Manually check input folder for new reports,30,0,30
+Open CSV and compute column totals in Excel,20,0,20
+Move processed files to archive folder,10,0,10

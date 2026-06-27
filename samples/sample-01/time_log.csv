@@ -1,0 +1,4 @@
+task,before_min_per_week,after_min_per_week,saved_min_per_week
+Manual copy-paste of quotes/prices from website,60,0,60
+Formatting data into spreadsheet,20,0,20
+Checking for new data each morning,15,2,13
