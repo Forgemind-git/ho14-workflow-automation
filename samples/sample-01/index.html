@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sample 01 — Daily Web Scraper → Sheet | HO14</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:#F8F9FA; color:#1a1a2e; }
+:root { --color: #0E7490; }
+header { background: var(--color); color:#fff; padding:40px 32px 32px; }
+header .back { font-size:13px; opacity:.75; margin-bottom:12px; display:inline-block; color:#fff; text-decoration:none; }
+header .back:hover { opacity:1; }
+header .badge { font-size:13px; font-weight:700; letter-spacing:.08em; opacity:.8; text-transform:uppercase; margin-bottom:8px; }
+header h1 { font-size:26px; font-weight:800; margin-bottom:8px; }
+header p { font-size:15px; opacity:.85; max-width:640px; line-height:1.6; }
+.content { max-width:780px; margin:0 auto; padding:32px; }
+.section { background:#fff; border-radius:10px; box-shadow:0 1px 6px rgba(0,0,0,.08); padding:24px 28px; margin-bottom:20px; }
+.section h2 { font-size:17px; font-weight:700; color:var(--color); margin-bottom:14px; border-bottom:2px solid #E5E7EB; padding-bottom:10px; }
+.section p, .section li { font-size:14.5px; color:#374151; line-height:1.7; }
+.section ul, .section ol { padding-left:20px; margin-top:8px; }
+.section li { margin-bottom:6px; }
+.sub-bar { background:#EFF6FF; border-left:4px solid var(--color); padding:14px 20px; border-radius:4px; font-size:14px; color:#1E40AF; line-height:1.6; margin-bottom:20px; }
+.sub-bar strong { color:var(--color); }
+.prompt-block { position:relative; background:#0f172a; border-radius:8px; padding:20px 20px 44px; margin-top:12px; }
+.prompt-block pre { color:#e2e8f0; font-family:'Courier New', monospace; font-size:13px; line-height:1.7; white-space:pre-wrap; word-break:break-word; }
+.copy-btn { position:absolute; bottom:10px; right:10px; background:var(--color); color:#fff; border:none; border-radius:5px; padding:6px 14px; font-size:12px; font-weight:600; cursor:pointer; }
+.copy-btn:hover { opacity:.88; }
+.step-list { counter-reset:step; padding-left:0; list-style:none; }
+.step-list li { counter-increment:step; padding:10px 14px 10px 48px; position:relative; border-left:3px solid #E5E7EB; margin-bottom:10px; background:#F9FAFB; border-radius:4px; }
+.step-list li::before { content:counter(step); position:absolute; left:-14px; top:10px; background:var(--color); color:#fff; font-weight:700; font-size:12px; width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+.output-block { background:#0f172a; border-radius:8px; padding:20px; margin-top:12px; }
+.output-block pre { color:#86efac; font-family:'Courier New', monospace; font-size:13px; line-height:1.7; white-space:pre-wrap; }
+.ref-box { background:#FEF9C3; border-left:4px solid #EAB308; padding:14px 18px; border-radius:4px; font-size:13.5px; color:#713F12; line-height:1.6; }
+footer { text-align:center; padding:24px; color:#9CA3AF; font-size:13px; border-top:1px solid #E5E7EB; margin-top:8px; }
+@media(max-width:580px){ .content{ padding:16px; } header{ padding:24px 16px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="../../" class="back">← Back to HO14</a>
+  <div class="badge">HO14 · Sample 01</div>
+  <h1>Daily Web Scraper → Sheet</h1>
+  <p>Automatically scrape a website every day and append fresh data to a spreadsheet — no manual copying, no missed updates.</p>
+</header>
+
+<div class="content">
+
+  <div class="sub-bar">
+    <strong>Subscription required:</strong> Claude.ai Pro or Team plan with Cowork access. No API key or local Python setup needed.
+  </div>
+
+  <div class="section">
+    <h2>What this does</h2>
+    <p>This automation visits a target website on a daily schedule, extracts specific data elements (prices, headlines, quotes — whatever matches your CSS selector), and appends each value as a timestamped row to a CSV spreadsheet.</p>
+    <ul>
+      <li>Visits the page with a proper User-Agent header</li>
+      <li>Extracts all elements matching the configured CSS selector</li>
+      <li>Cleans values (strips whitespace and quote characters)</li>
+      <li>Appends timestamped rows to a CSV file</li>
+      <li>Runs every morning so data is ready before you start work</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Subscription required</h2>
+    <p>This guide uses <strong>Claude Cowork</strong> — a scheduled automation feature available on the Claude.ai Pro and Team plans.</p>
+    <ul>
+      <li>Go to <a href="https://claude.ai" target="_blank">claude.ai</a> and sign in</li>
+      <li>You need a <strong>Pro or Team</strong> subscription</li>
+      <li>Cowork lets you schedule recurring prompts — no Python, no server, no API key required</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Step-by-step in Claude Cowork</h2>
+    <ol class="step-list">
+      <li>Open <a href="https://claude.ai" target="_blank">claude.ai</a> and click <strong>Cowork</strong> in the left sidebar.</li>
+      <li>Click <strong>New Automation</strong> and set the schedule to <strong>Daily</strong> at your preferred time (e.g. 08:00).</li>
+      <li>In the "What should Claude do?" field, paste the prompt below.</li>
+      <li>Replace <code>[YOUR_URL]</code> with the page you want to scrape and <code>[YOUR_CSS_SELECTOR]</code> with the element to extract (e.g. <code>span.price</code>, <code>h2.headline</code>).</li>
+      <li>In the output settings, choose <strong>Append to Google Sheet</strong> (or download as CSV) and name the sheet <code>scraped_data</code>.</li>
+      <li>Click <strong>Save &amp; Activate</strong>. Claude will run the scrape every day at the scheduled time.</li>
+    </ol>
+
+    <div class="prompt-block">
+      <pre>You are a daily web scraping automation. Each time you run, do the following:
+
+1. Fetch the webpage at: [YOUR_URL]
+2. Extract all text content from elements matching CSS selector: [YOUR_CSS_SELECTOR]
+3. Clean each value — strip leading/trailing whitespace and remove stray quotation marks.
+4. For each extracted value, output one row in this exact CSV format:
+   timestamp,url,selector,value
+   Use ISO-8601 for the timestamp (YYYY-MM-DD HH:MM:SS).
+5. After the CSV rows, print a short summary:
+   - How many rows were extracted
+   - The first 3 values (truncated to 80 chars each)
+   - Any errors encountered
+
+Output ONLY the CSV rows followed by the summary. Do not add any other text.</pre>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.querySelector('pre').textContent).then(()=>{this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Prompt',1500)})">Copy Prompt</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Sample output</h2>
+    <div class="output-block"><pre>=======================================================
+  Daily Web Scraper -- Run Complete
+=======================================================
+  URL      : https://quotes.toscrape.com/
+  Selector : span.text
+  Rows     : 10 appended
+
+CSV rows:
+2026-06-28 08:00:01,https://quotes.toscrape.com/,span.text,The world as we have created it is a process of our thinking.
+2026-06-28 08:00:01,https://quotes.toscrape.com/,span.text,It is our choices Harry that show what we truly are.
+2026-06-28 08:00:01,https://quotes.toscrape.com/,span.text,There are only two ways to live your life.
+... (7 more rows)
+
+Summary: 10 rows extracted. No errors.</pre></div>
+  </div>
+
+  <div class="section">
+    <h2>Reference: local Python version</h2>
+    <div class="ref-box">
+      The file <code>main.py</code> in this folder is the original local Python implementation. It requires <code>pip install -r requirements.txt</code>, a <code>.env</code> file, and a cron job on your machine. The Cowork guide above achieves the same result without any local setup.
+    </div>
+  </div>
+
+</div>
+
+<footer>Forgemind AI · Claude Course · HO14 · <a href="https://github.com/Forgemind-git/ho14-workflow-automation">github.com/Forgemind-git/ho14-workflow-automation</a></footer>
+
+</body>
+</html>
