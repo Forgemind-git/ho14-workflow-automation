@@ -4,9 +4,54 @@
 
 Reads records from a primary source (CSV A) and a secondary source (CSV B), identifies rows in A missing from B (keyed on an ID column), appends them to B, and logs the sync delta.
 
+## Use it with your Claude.ai subscription
+This is the primary path — **no API key, no terminal, no Python needed.** Just your
+Claude.ai login (Pro or Team, which includes Cowork).
+
+1. Open **Claude.ai** and click **Cowork** in the left sidebar, then start a new task.
+2. Paste **the example prompt** below into the chat, and upload your two CSV files (or let
+   Claude create two sample files to test the idea).
+3. Press send — Claude compares them, copies the missing rows across, and shows you exactly
+   which ones it added.
+4. Click **Schedule** on the task → **Daily** so the two stay in sync automatically.
+
+### The example prompt
+Copy this into Cowork as-is, then tweak it:
+
+```
+You are keeping two spreadsheets in sync for me.
+
+I have two CSV files:
+- source_a.csv  → the authoritative master list
+- source_b.csv  → a second copy that should match it
+
+Both share a unique ID column called "id".
+
+Each time you run:
+1. Read both files.
+2. Find every row whose "id" is in source_a.csv but NOT in source_b.csv.
+3. Append those missing rows to source_b.csv, adding a column called synced_at with the
+   current date and time.
+4. Keep a running log file called delta_log.jsonl — add one line per run recording the
+   date, how many rows you added, and which ids they were.
+5. Show me a summary: which ids were synced, or "already in sync" if nothing changed.
+
+Important: running twice in a row should add nothing the second time (don't duplicate rows).
+```
+
 ## Problem it solves
 
 When data lives in two places (a CRM export and a local database, two team spreadsheets, a master list and a filtered list), keeping them in sync manually means comparing hundreds of rows by eye and copy-pasting rows. This job does it automatically and tracks exactly what changed.
+
+---
+
+## Optional — automate it with code + cron (advanced)
+
+You do **not** need any of the below for the course — the Cowork steps above are the whole
+hands-on. This is a reference Python sync job (with a JSON-Lines audit trail) for
+developers who want it running unattended on their own server via cron. It needs **no
+Anthropic API key**; a key only matters if you later wire Claude into the code, and that
+key is separate from your Claude.ai subscription.
 
 ## How it works
 

@@ -4,9 +4,50 @@
 
 Watches an `input/` folder for new CSV files. When one appears, reads it, computes a summary (row count, column totals), writes a `processed_` prefixed copy to `output/`, and moves the original to `processed/`.
 
+## Use it with your Claude.ai subscription
+This is the primary path — **no API key, no terminal, no Python needed.** Just your
+Claude.ai login (Pro or Team, which includes Cowork).
+
+1. Open **Claude.ai** and click **Cowork** in the left sidebar, then start a new task.
+2. Paste **the example prompt** below into the chat.
+3. Upload a sample CSV (or ask Claude to make a test one), then press send — Claude
+   processes the file and shows you the summary and the processed copy.
+4. Click **Schedule** on the task → **Every 15 minutes** (or whatever suits) so Cowork
+   keeps checking for new files automatically.
+
+### The example prompt
+Copy this into Cowork as-is, then tweak it for your own files:
+
+```
+You are setting up a file-processing helper for me.
+
+I will drop CSV files into a folder called input/. Each time you run:
+1. Look in the input/ folder for any CSV files that haven't been processed yet.
+2. For each new CSV file:
+   - Read all the rows.
+   - Count how many rows there are.
+   - For every column that contains numbers, add up the total.
+   - Save a cleaned copy into an output/ folder, named "processed_<original name>",
+     adding a column called processed_at with the current date and time.
+   - Move the original file into a processed/ folder so it isn't handled twice.
+3. Show me a short summary for each file: its name, the row count, and the column totals.
+
+If there are no new files, just tell me "nothing new to process".
+```
+
 ## Problem it solves
 
 Teams that receive export files (from ERPs, CRMs, reports) spend time manually opening each file, checking row counts, calculating totals, renaming/moving files, and organising archives. This watcher does it automatically the moment a file lands.
+
+---
+
+## Optional — automate it with code + cron (advanced)
+
+You do **not** need any of the below for the course — the Cowork steps above are the whole
+hands-on. This is a reference Python watcher (using watchdog) for developers who want it
+running constantly on their own machine, reacting the instant a file appears. It needs
+**no Anthropic API key**; a key only matters if you later wire Claude into the code, and
+that key is separate from your Claude.ai subscription.
 
 ## How it works
 
