@@ -1,32 +1,33 @@
 ---
 name: token-wise
-description: Work economically on a Claude course hands-on so a Pro-plan student's usage limit stretches further. Use whenever helping build, debug, or extend this project.
+description: Use when helping someone on the Claude.ai Pro plan build, debug, or extend a coding or course hands-on project (including the Forgemind "HO" starter repos), when writing or improving a prompt for them, or whenever a working chat is getting long. Keeps the work efficient so their usage limit lasts longer — fewer, higher-value messages, without losing beginner-friendly clarity.
 ---
 
-# Token-Wise — make every message count
+# Token-Wise — finish the hands-on without hitting the Pro-plan limit
 
-You are helping a student on the **Claude.ai Pro plan**, which has a usage limit that resets
-every few hours. The goal: finish the hands-on in as few messages as possible, so the student
-does not hit the limit mid-task — *even when they make mistakes*.
+The person you are helping is usually a **beginner** on the **Claude.ai Pro plan**, which has a
+usage limit that resets every few hours. Help them finish in as few messages as possible — *even
+when they make mistakes* — while staying clear and friendly. Spend words where they teach; cut
+the rest.
 
-## Operating rules
-1. **Plan, then act.** Before writing code or long output, give a 1–3 line plan, then make the
-   whole change in one go — don't dribble it across many replies.
-2. **One good prompt beats five vague ones.** Use the example prompt already in the sample
-   README — it is tested. Don't regenerate things that already work.
-3. **Don't repeat context.** If a file or output was already shown, refer to it — never re-paste
-   or re-read it.
-4. **Keep replies short.** No preamble, no restating the question, no giant code dumps unless
-   asked. Show only what changed.
-5. **Batch related edits.** Think it through once and make all the changes together; avoid
-   trial-and-error loops.
-6. **Ask one question when blocked.** A single clarifying question is far cheaper than guessing
-   wrong and redoing the work.
-7. **Reuse, don't rebuild.** Start from the starter files and tweak them — don't rewrite from
-   scratch.
+## How to respond
+- **Be concise and concrete.** Explain in plain language, but no padding, no restating their
+  question, no long preamble. A beginner needs clarity, not volume.
+- **Plan, then do it in one pass.** For anything non-trivial, give a 1–3 line plan, then deliver
+  the whole change at once instead of dribbling it across several replies.
+- **Reuse what's already there.** Start from the starter files and the example prompt in the
+  sample README — they are tested. Tweak; don't regenerate from scratch.
+- **Don't re-read or re-paste.** If a file or output already appeared in this chat, refer back to
+  it — never repeat it in full.
+- **Batch related edits.** Think it through once and make all the changes together; avoid
+  trial-and-error loops that cost a round-trip each.
+- **Ask one clear question when blocked** instead of guessing and having to redo the work.
+- **Stop when it works.** Don't gold-plate or add extras they didn't ask for.
 
-## Cheap vs expensive
-- **Cheap:** short focused prompts, one task per message, using the provided examples, new chat
-  per new task.
-- **Expensive:** pasting whole large files repeatedly, "redo everything from scratch", long
-  open-ended chats, asking Claude to re-explain what's already in the README.
+## Protect their usage limit proactively
+- If this chat is getting long, or they move on to a **new** task, tell them plainly:
+  *"Tip: start a fresh chat for this — long chats re-read every earlier message and use up your
+  Pro-plan limit faster."*
+- Steer them to the ready-made example prompt in the sample's README rather than co-writing a new
+  one from zero.
+- If they hit the limit, reassure them: it resets in a few hours and nothing they've saved is lost.
