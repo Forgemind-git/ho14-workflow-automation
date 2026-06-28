@@ -1,2 +1,0 @@
-# All libraries used (smtplib, email, csv) are part of Python's standard library.
-# No additional packages to install.

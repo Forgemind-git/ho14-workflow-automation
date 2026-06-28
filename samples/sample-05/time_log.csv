@@ -1,4 +1,0 @@
-task,before_min_per_week,after_min_per_week,saved_min_per_week
-Manually compare two spreadsheets to find missing records,45,0,45
-Copy missing rows from primary to secondary source,20,0,20
-Track what was synced and when,15,2,13

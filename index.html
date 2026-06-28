@@ -1,108 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HO14 — Coded Workflow Automation | Forgemind AI Claude Course</title>
-<style>
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:#F8F9FA; color:#1a1a2e; }
-:root { --color: #0E7490; }
-header { background: var(--color); color:#fff; padding:40px 32px 32px; }
-header .badge { font-size:13px; font-weight:700; letter-spacing:.08em; opacity:.8; text-transform:uppercase; margin-bottom:8px; }
-header h1 { font-size:28px; font-weight:800; margin-bottom:8px; }
-header p { font-size:15px; opacity:.85; max-width:640px; line-height:1.6; }
-.sub-bar { background:#fff; border-left:4px solid var(--color); padding:14px 20px; margin:24px 32px; border-radius:4px; font-size:14px; color:#374151; line-height:1.6; box-shadow:0 1px 4px rgba(0,0,0,.07); }
-.sub-bar strong { color:var(--color); }
-.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; padding:0 32px 40px; }
-.card { background:#fff; border-radius:10px; box-shadow:0 1px 6px rgba(0,0,0,.08); overflow:hidden; transition:box-shadow .15s; }
-.card:hover { box-shadow:0 4px 16px rgba(0,0,0,.13); }
-.card-top { background:var(--color); padding:14px 18px; display:flex; align-items:center; gap:10px; }
-.card-num { background:rgba(255,255,255,.25); color:#fff; font-weight:800; font-size:12px; border-radius:20px; padding:2px 9px; white-space:nowrap; }
-.card-top h3 { color:#fff; font-size:14.5px; font-weight:700; }
-.card-body { padding:16px 18px; }
-.card-body p { font-size:13px; color:#4B5563; line-height:1.6; margin-bottom:14px; }
-.btn { display:inline-flex; align-items:center; gap:6px; padding:8px 16px; background:var(--color); color:#fff; text-decoration:none; border-radius:6px; font-size:13px; font-weight:600; }
-.btn:hover { opacity:.88; }
-footer { text-align:center; padding:24px; color:#9CA3AF; font-size:13px; border-top:1px solid #E5E7EB; margin-top:8px; }
-footer a { color:#6B7280; }
-@media(max-width:580px){ .grid{ grid-template-columns:1fr; padding:0 14px 28px; } header{ padding:24px 16px; } .sub-bar{ margin:14px 14px; } }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HO14: Coded Workflow Automation (Claude Cowork) — Starter</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#F8F9FA; color:#1a1a2e; }
+    header { background:#0E7490; color:#fff; padding:40px 32px 32px; }
+    .badge { font-size:12px; font-weight:700; letter-spacing:.08em; opacity:.75; text-transform:uppercase; margin-bottom:8px; }
+    h1 { font-size:26px; font-weight:800; margin-bottom:6px; }
+    header p { font-size:14px; opacity:.85; max-width:600px; line-height:1.6; }
+    .starter-bar { background:#FEF3C7; border-left:4px solid #D97706; padding:14px 20px; margin:24px 32px; border-radius:4px; font-size:14px; color:#92400E; line-height:1.6; }
+    .starter-bar strong { color:#92400E; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; padding:0 32px 40px; }
+    .card { background:#fff; border-radius:10px; box-shadow:0 1px 6px rgba(0,0,0,.08); overflow:hidden; }
+    .card-top { background:#0E7490; padding:12px 16px; display:flex; align-items:center; gap:10px; }
+    .num { background:rgba(255,255,255,.25); color:#fff; font-weight:800; font-size:12px; border-radius:20px; padding:2px 9px; }
+    .card-top h3 { color:#fff; font-size:14px; font-weight:700; }
+    .card-body { padding:16px; }
+    .card-body p { font-size:13px; color:#4B5563; line-height:1.6; margin-bottom:14px; }
+    .todo-badge { display:inline-block; background:#FEF3C7; color:#92400E; font-size:11px; font-weight:700; padding:2px 8px; border-radius:20px; margin-bottom:12px; }
+    .btn { display:inline-flex; align-items:center; gap:6px; padding:8px 14px; background:#0E7490; color:#fff; text-decoration:none; border-radius:6px; font-size:13px; font-weight:600; }
+    footer { text-align:center; padding:24px; color:#9CA3AF; font-size:13px; border-top:1px solid #E5E7EB; }
+  </style>
 </head>
 <body>
+  <header>
+    <div class="badge">HO14 &middot; Forgemind AI Claude Course &middot; Starter Template</div>
+    <h1>Coded Workflow Automation (Claude Cowork)</h1>
+    <p>Your starting point. Pick ONE sample below, read the problem statement, and build it using Claude.ai.</p>
+  </header>
+  <div class="starter-bar">
+    <strong>This is the starter branch.</strong> It gives you the structure &mdash; you supply the thinking and the Claude.ai work.
+    To see a complete reference, switch to the <code>main</code> branch or visit the GitHub Pages site.
+  </div>
+  <div class="grid">
 
-<header>
-  <div class="badge">HO14</div>
-  <h1>Coded Workflow Automation</h1>
-  <p>Recurring automations built and scheduled in Claude Cowork — no local Python or API key needed.</p>
-</header>
-
-<div class="sub-bar">
-  <strong>Claude.ai subscription required</strong> — Requires Claude.ai Pro or Team subscription with Cowork access. Follow the Cowork setup guide for each sample to configure the scheduled automation.
-</div>
-
-<div class="grid">
-
-  <div class="card">
-    <div class="card-top">
-      <span class="card-num">01</span>
-      <h3>Daily Web Scraper → Sheet</h3>
+    <div class="card">
+      <div class="card-top"><span class="num">Sample 1</span><h3>web scraper</h3></div>
+      <div class="card-body">
+        <span class="todo-badge">&#x2B1C; Not started</span>
+        <p>You copy the same numbers off a website into a tracking sheet every morning. Build a Cowork automation that scrapes and saves them on a schedule.</p>
+        <a href="./samples/sample-01/" class="btn">Start here &rarr;</a>
+      </div>
     </div>
-    <div class="card-body">
-      <p>Stop manually visiting websites to copy data. Scrape any page on a daily schedule and wake up to fresh timestamped rows already in your spreadsheet.</p>
-      <a href="./samples/sample-01/" class="btn">View Sample →</a>
+    <div class="card">
+      <div class="card-top"><span class="num">Sample 2</span><h3>api pipeline</h3></div>
+      <div class="card-body">
+        <span class="todo-badge">&#x2B1C; Not started</span>
+        <p>You manually pull from an API, reshape it, and drop it somewhere every day. Build a Cowork pipeline.</p>
+        <a href="./samples/sample-02/" class="btn">Start here &rarr;</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-top"><span class="num">Sample 3</span><h3>file watcher</h3></div>
+      <div class="card-body">
+        <span class="todo-badge">&#x2B1C; Not started</span>
+        <p>Files land in a folder and someone has to process each one by hand. Build a Cowork file-watcher.</p>
+        <a href="./samples/sample-03/" class="btn">Start here &rarr;</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-top"><span class="num">Sample 4</span><h3>report emailer</h3></div>
+      <div class="card-body">
+        <span class="todo-badge">&#x2B1C; Not started</span>
+        <p>Your boss expects the same report emailed every week. Build a Cowork scheduled job.</p>
+        <a href="./samples/sample-04/" class="btn">Start here &rarr;</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-top"><span class="num">Sample 5</span><h3>sync job</h3></div>
+      <div class="card-body">
+        <span class="todo-badge">&#x2B1C; Not started</span>
+        <p>Two of your systems drift out of sync. Build a Cowork sync job.</p>
+        <a href="./samples/sample-05/" class="btn">Start here &rarr;</a>
+      </div>
     </div>
   </div>
-
-  <div class="card">
-    <div class="card-top">
-      <span class="card-num">02</span>
-      <h3>API Fetch → Transform → Store Pipeline</h3>
-    </div>
-    <div class="card-body">
-      <p>Automate the full ETL cycle: pull JSON from a public API, rename and reshape fields to match your schema, and build a clean historical dataset automatically.</p>
-      <a href="./samples/sample-02/" class="btn">View Sample →</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-top">
-      <span class="card-num">03</span>
-      <h3>File Drop Watcher &amp; Processor</h3>
-    </div>
-    <div class="card-body">
-      <p>Eliminate manual file handling. Drop a CSV into a watched folder and have Claude automatically compute summaries, add totals, and archive the processed copy.</p>
-      <a href="./samples/sample-03/" class="btn">View Sample →</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-top">
-      <span class="card-num">04</span>
-      <h3>Scheduled Report Emailer</h3>
-    </div>
-    <div class="card-body">
-      <p>Replace the weekly ritual of opening a CSV, calculating totals, and writing a team email. Get a formatted HTML report sent to every inbox every Monday — automatically.</p>
-      <a href="./samples/sample-04/" class="btn">View Sample →</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-top">
-      <span class="card-num">05</span>
-      <h3>Two-Source Sync Job</h3>
-    </div>
-    <div class="card-body">
-      <p>Stop comparing two spreadsheets by eye. Automatically detect records present in your primary source but missing from the secondary, and sync only the delta — idempotently.</p>
-      <a href="./samples/sample-05/" class="btn">View Sample →</a>
-    </div>
-  </div>
-
-</div>
-
-<footer>
-  Forgemind AI · Claude Course · HO14 · <a href="https://github.com/Forgemind-git/ho14-workflow-automation">github.com/Forgemind-git/ho14-workflow-automation</a>
-</footer>
-
+  <footer>Forgemind AI &middot; Claude Course &middot; HO14 &middot; <a href="https://github.com/Forgemind-git/ho14-workflow-automation" style="color:#0E7490">github.com/Forgemind-git/ho14-workflow-automation</a></footer>
 </body>
 </html>

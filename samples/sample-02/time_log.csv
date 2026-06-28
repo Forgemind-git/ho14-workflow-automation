@@ -1,4 +1,0 @@
-task,before_min_per_week,after_min_per_week,saved_min_per_week
-Check weather API manually and copy to spreadsheet,30,0,30
-Format and clean API response fields,20,0,20
-Build weekly weather trend report,45,5,40

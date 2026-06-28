@@ -1,76 +1,24 @@
-# Sample 01 -- Daily Web Scraper -> Sheet
+# HO14 Sample 1 — web scraper
 
-## What this automation does
+## Your task
 
-Scrapes a target URL for a configured CSS selector (e.g. price, headline), cleans the value, and appends a timestamped row to a CSV. Runs daily via cron.
+You copy the same numbers off a website into a tracking sheet every morning. Build a Cowork automation that scrapes and saves them on a schedule.
 
-**Target:** quotes.toscrape.com (freely scrapable public page -- swap via .env)
+## What you will build
 
-## Problem it solves
+A recurring automation inside Claude Cowork — scheduled or manually triggered
 
-Instead of manually visiting a website each day, copying data into a spreadsheet, and formatting it -- this script does it in seconds on a schedule. You wake up to fresh data already in your CSV.
+## Schedule
 
-## How it works
+Daily at [YOUR TIME]
 
-1. Reads `TARGET_URL` and `CSS_SELECTOR` from `.env`
-2. Fetches the page with a proper User-Agent header
-3. Parses the HTML with BeautifulSoup
-4. Extracts all elements matching the CSS selector
-5. Cleans each value (strips whitespace and quote characters)
-6. Appends timestamped rows to `scraped_data.csv`
-7. Writes a detailed entry to `run.log`
-8. Prints a console summary
+## How to set it up
 
-## Output example
+1. Open claude.ai → Cowork
+2. Paste the setup prompt from cowork-prompt.md (fill it in first!)
+3. Claude will write and run the script for you
+4. Use Cowork's scheduling feature to run it automatically
 
-```
-=======================================================
-  Daily Web Scraper -- Run Complete
-=======================================================
-  URL      : https://quotes.toscrape.com/
-  Selector : span.text
-  Rows     : 10 appended to scraped_data.csv
-  Elapsed  : 1.23s
-  First 3  :
-    * The world as we have created it is a process of our thinking.
-    * It is our choices, Harry, that show what we truly are.
-    * There are only two ways to live your life.
-=======================================================
-```
+## Required
 
-`scraped_data.csv` format:
-```
-timestamp,url,selector,value
-2026-06-27 08:00:01,https://quotes.toscrape.com/,span.text,The world as we have created it...
-```
-
-## Quick start
-
-```bash
-python3 -m venv .venv
-.venv/bin/pip install -r requirements.txt
-cp .env.example .env
-bash run.sh
-```
-
-## Scheduling
-
-See [cron_setup.md](cron_setup.md) for full instructions.
-
-Crontab line (daily at 08:00):
-```
-0 8 * * * /path/to/sample-01/run.sh >> /path/to/sample-01/cron.log 2>&1
-```
-
-## Files
-
-| File | Purpose |
-|------|---------|
-| `main.py` | Core automation logic |
-| `run.sh` | Cron wrapper (loads .env, activates venv) |
-| `cron_setup.md` | Step-by-step scheduling guide |
-| `.env.example` | Environment variable template |
-| `requirements.txt` | Python dependencies |
-| `time_log.csv` | Time saved before/after automation |
-| `run.log` | Generated: per-run log |
-| `scraped_data.csv` | Generated: output data |
+Claude.ai Pro or Team (Cowork access + scheduling)

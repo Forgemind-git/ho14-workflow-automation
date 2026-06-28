@@ -1,4 +1,0 @@
-task,before_min_per_week,after_min_per_week,saved_min_per_week
-Compile weekly metrics from CSV manually,30,0,30
-Format data into email-ready table,20,0,20
-Write email body and send to team,15,0,15
