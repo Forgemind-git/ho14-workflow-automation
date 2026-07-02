@@ -1,108 +1,135 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HO14 — Coded Workflow Automation | Forgemind AI Claude Course</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HO14 — Coded Workflow Automation · ForgeMind AI</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:#F8F9FA; color:#1a1a2e; }
-:root { --color: #0E7490; }
-header { background: var(--color); color:#fff; padding:40px 32px 32px; }
-header .badge { font-size:13px; font-weight:700; letter-spacing:.08em; opacity:.8; text-transform:uppercase; margin-bottom:8px; }
-header h1 { font-size:28px; font-weight:800; margin-bottom:8px; }
-header p { font-size:15px; opacity:.85; max-width:640px; line-height:1.6; }
-.sub-bar { background:#fff; border-left:4px solid var(--color); padding:14px 20px; margin:24px 32px; border-radius:4px; font-size:14px; color:#374151; line-height:1.6; box-shadow:0 1px 4px rgba(0,0,0,.07); }
-.sub-bar strong { color:var(--color); }
-.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; padding:0 32px 40px; }
-.card { background:#fff; border-radius:10px; box-shadow:0 1px 6px rgba(0,0,0,.08); overflow:hidden; transition:box-shadow .15s; }
-.card:hover { box-shadow:0 4px 16px rgba(0,0,0,.13); }
-.card-top { background:var(--color); padding:14px 18px; display:flex; align-items:center; gap:10px; }
-.card-num { background:rgba(255,255,255,.25); color:#fff; font-weight:800; font-size:12px; border-radius:20px; padding:2px 9px; white-space:nowrap; }
-.card-top h3 { color:#fff; font-size:14.5px; font-weight:700; }
-.card-body { padding:16px 18px; }
-.card-body p { font-size:13px; color:#4B5563; line-height:1.6; margin-bottom:14px; }
-.btn { display:inline-flex; align-items:center; gap:6px; padding:8px 16px; background:var(--color); color:#fff; text-decoration:none; border-radius:6px; font-size:13px; font-weight:600; }
-.btn:hover { opacity:.88; }
-footer { text-align:center; padding:24px; color:#9CA3AF; font-size:13px; border-top:1px solid #E5E7EB; margin-top:8px; }
-footer a { color:#6B7280; }
-@media(max-width:580px){ .grid{ grid-template-columns:1fr; padding:0 14px 28px; } header{ padding:24px 16px; } .sub-bar{ margin:14px 14px; } }
+  :root{
+    --pageBg:#F7F7F3; --headerBg:#0F0F10; --headerText:#F5F5F2; --headerMuted:#A1A1AA;
+    --headerBorder:rgba(255,255,255,.12); --cardBg:#fff; --border:#E5E5E0;
+    --text:#111; --textSec:#6B7280; --textMuted:#999; --primary:#dc2626; --primaryHover:#b91c1c;
+    --hover:#EFEEE6; --green:#0F6E56; --purple:#534AB7; --amber:#854F0B;
+    --shadowSm:0 1px 2px rgba(0,0,0,.08); --shadowMd:0 8px 24px rgba(0,0,0,.06);
+    --font:'DM Sans',system-ui,sans-serif; --mono:'DM Mono',monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{font-family:var(--font);background:var(--pageBg);color:var(--text);}
+  a{color:inherit;}
+  /* dark header */
+  header{height:56px;background:var(--headerBg);color:var(--headerText);display:flex;align-items:center;
+    padding:0 20px;position:sticky;top:0;z-index:10;border-bottom:1px solid var(--headerBorder);}
+  .wordmark{font-weight:900;font-size:16px;letter-spacing:.02em;display:flex;align-items:center;gap:2px;}
+  .wordmark .badge{background:var(--primary);color:#fff;padding:1px 6px;border-radius:5px;margin-left:2px;font-weight:800;}
+  .header-right{margin-left:auto;color:var(--headerMuted);font-size:12px;font-weight:500;display:flex;align-items:center;gap:8px;}
+  .header-right .dot{width:6px;height:6px;border-radius:99px;background:var(--green);}
+  /* layout */
+  .wrap{max-width:960px;margin:0 auto;padding:32px 24px 64px;}
+  /* hero */
+  .eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--primary);}
+  h1{font-size:30px;font-weight:700;margin:8px 0 14px;letter-spacing:-.01em;}
+  .pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
+  .pill{font-size:11px;font-weight:600;padding:4px 10px;border-radius:99px;font-family:var(--mono);}
+  .pill.wk{background:#E7F0FE;color:#1877F2;} .pill.mod{background:#EEEDFE;color:#3C3489;}
+  .pill.fmt{background:#E1F5EE;color:#0F6E56;} .pill.kind{background:#FAEEDA;color:#854F0B;}
+  /* card */
+  .card{background:var(--cardBg);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadowSm);padding:20px;}
+  .done{display:flex;align-items:flex-start;gap:12px;margin-bottom:28px;}
+  .done .ic{width:34px;height:34px;border-radius:8px;background:#FCEBEB;color:var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .done .cap{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--textMuted);}
+  .done .val{font-size:15px;font-weight:600;margin-top:3px;}
+  .section-h{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:600;margin:34px 0 14px;}
+  .section-h svg{color:var(--primary);}
+  .sub{font-size:13px;color:var(--textSec);margin:-8px 0 16px;}
+  /* sample grid */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .sample{background:var(--cardBg);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadowSm);
+    padding:16px;display:flex;flex-direction:column;gap:8px;transition:box-shadow .15s,transform .15s;}
+  .sample:hover{box-shadow:var(--shadowMd);transform:translateY(-1px);}
+  .sample .num{font-family:var(--mono);font-size:11px;font-weight:500;color:#fff;background:var(--primary);
+    width:22px;height:22px;border-radius:99px;display:flex;align-items:center;justify-content:center;}
+  .sample h3{font-size:14px;font-weight:600;margin:0;}
+  .sample p{font-size:13px;line-height:1.5;color:var(--text);margin:0;}
+  .sample .succ{font-size:12px;color:var(--green);font-weight:500;}
+  .sample .go{margin-top:auto;font-family:var(--mono);font-size:12px;font-weight:500;color:var(--primary);text-decoration:none;display:inline-flex;align-items:center;gap:5px;}
+  .sample .go:hover{color:var(--primaryHover);}
+  /* steps */
+  .steps{counter-reset:s;display:flex;flex-direction:column;gap:10px;}
+  .step{display:flex;gap:12px;align-items:flex-start;}
+  .step .n{counter-increment:s;font-family:var(--mono);font-size:12px;font-weight:500;color:var(--primary);
+    border:1.5px solid var(--border);border-radius:99px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .step .n::before{content:counter(s);}
+  .step p{font-size:13.5px;line-height:1.5;margin:2px 0;}
+  /* tip */
+  .tip{background:#FDF6F6;border:1px solid #F3C6C6;border-radius:8px;padding:16px 18px;margin-top:22px;}
+  .tip .th{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--primary);margin-bottom:6px;}
+  .tip ul{margin:6px 0 0;padding-left:18px;font-size:13px;color:var(--textSec);line-height:1.6;}
+  code{font-family:var(--mono);font-size:12px;background:#F1F0EA;padding:1px 5px;border-radius:4px;}
+  footer{border-top:1px solid var(--border);margin-top:40px;padding-top:18px;font-size:12px;color:var(--textMuted);font-family:var(--mono);text-align:center;}
+  @media(max-width:680px){.grid{grid-template-columns:1fr;} h1{font-size:24px;}}
 </style>
 </head>
 <body>
+  <header>
+    <span class="wordmark">FORGE<span class="badge">COURSE</span></span>
+    <span class="header-right"><span class="dot"></span>ForgeMind AI · Hands-On Portfolio</span>
+  </header>
 
-<header>
-  <div class="badge">HO14</div>
-  <h1>Coded Workflow Automation</h1>
-  <p>Recurring automations built and scheduled in Claude Cowork — no local Python or API key needed.</p>
-</header>
-
-<div class="sub-bar">
-  <strong>Claude.ai subscription required</strong> — Requires Claude.ai Pro or Team subscription with Cowork access. Follow the Cowork setup guide for each sample to configure the scheduled automation.
-</div>
-
-<div class="grid">
-
-  <div class="card">
-    <div class="card-top">
-      <span class="card-num">01</span>
-      <h3>Daily Web Scraper → Sheet</h3>
+  <div class="wrap">
+    <div class="eyebrow">Hands-On 14 · Week 6 · Module M18 — Coded Workflow Automation</div>
+    <h1>Coded Workflow Automation</h1>
+    <div class="pills">
+      <span class="pill wk">Week 6</span>
+      <span class="pill mod">M18 · Coded Workflow Automation</span>
+      <span class="pill fmt">Solo</span>
+      <span class="pill kind">Automation</span>
     </div>
-    <div class="card-body">
-      <p>Stop manually visiting websites to copy data. Scrape any page on a daily schedule and wake up to fresh timestamped rows already in your spreadsheet.</p>
-      <a href="./samples/sample-01/" class="btn">View Sample →</a>
+
+    <div class="done card">
+      <div class="ic"><i data-lucide="target"></i></div>
+      <div>
+        <div class="cap">Done when</div>
+        <div class="val">A scheduled, coded automation (Claude Code) with a measured before/after time log.</div>
+      </div>
     </div>
+
+    <div class="section-h"><i data-lucide="cpu"></i> What you build</div>
+    <div class="sub">A recurring automation built and scheduled in Claude — the automation script + how it's scheduled + a 5-step Loom + a measured before/after time log. Each sample runs unattended on a schedule (cron, hourly, daily or weekly) so the manual minutes disappear for good.</div>
+
+    <div class="section-h"><i data-lucide="list-checks"></i> Pick a problem statement</div>
+    <div class="sub">Choose one real use-case — or bring your own (get it approved first).</div>
+    <div class="grid">
+      <div class="sample"><span class="num">1</span><h3>Daily Web Scraper → Sheet</h3><p>You copy the same numbers off a website into a tracking sheet every morning and it is soul-crushing. Build a coded automation that scrapes that page daily, cleans the data, and appends it to a sheet — scheduled on a cron.</p><span class="succ">✓ it runs unattended each day and your time log shows the daily minutes saved</span><a class="go" href="./samples/sample-01/">View sample <i data-lucide="arrow-right"></i></a></div>
+      <div class="sample"><span class="num">2</span><h3>API Fetch → Transform → Store Pipeline</h3><p>You manually pull from an API, reshape it, and drop it somewhere every day. Build a coded pipeline that fetches from the API, transforms the data, and stores it or sends a notification, triggered on a schedule.</p><span class="succ">✓ a cron-driven fetch-transform-store loop with a before/after time log</span><a class="go" href="./samples/sample-02/">View sample <i data-lucide="arrow-right"></i></a></div>
+      <div class="sample"><span class="num">3</span><h3>File Drop Watcher &amp; Processor</h3><p>Files land in a folder and someone has to process each one by hand. Build a file-watcher automation that detects a new file, processes it (convert or extract), and writes the output.</p><span class="succ">✓ dropping a file triggers the job automatically, with a time log of manual minutes removed</span><a class="go" href="./samples/sample-03/">View sample <i data-lucide="arrow-right"></i></a></div>
+      <div class="sample"><span class="num">4</span><h3>Scheduled Report Emailer</h3><p>Your boss expects the same report emailed every week and assembling it eats an hour. Build a scheduled job that queries the data, builds the report, and emails it weekly.</p><span class="succ">✓ the email arrives on schedule with no manual steps — the recurring hour saved</span><a class="go" href="./samples/sample-04/">View sample <i data-lucide="arrow-right"></i></a></div>
+      <div class="sample"><span class="num">5</span><h3>Two-Source Sync Job</h3><p>Two of your systems drift out of sync and you reconcile them by hand. Build a coded sync job that keeps a sheet, database or tool aligned automatically on a schedule.</p><span class="succ">✓ the systems stay in sync after each run, documented with a before/after time log</span><a class="go" href="./samples/sample-05/">View sample <i data-lucide="arrow-right"></i></a></div>
+    </div>
+
+    <div class="section-h"><i data-lucide="git-branch"></i> How to use this repo</div>
+    <div class="steps card">
+      <div class="step"><span class="n"></span><p>Click <b>Use this template</b> to create your own copy.</p></div>
+      <div class="step"><span class="n"></span><p>Build your chosen project in your copy — the automation script, its schedule, and your before/after time log.</p></div>
+      <div class="step"><span class="n"></span><p>Replace this README with: what you built, the problem it solves, and how to run it.</p></div>
+    </div>
+
+    <div class="tip">
+      <div class="th"><i data-lucide="battery-charging"></i> Use your Claude.ai Pro plan wisely</div>
+      <ul>
+        <li>Use the example prompt in each sample's README — it's already written and tested. Don't reinvent it.</li>
+        <li>One clear prompt beats lots of vague back-and-forth. Say what you want, with an example, in a single message.</li>
+        <li>Start a new chat when you switch tasks — long chats re-read every earlier message and use up your limit faster.</li>
+        <li>Don't paste big files over and over. Paste once, then refer back to it.</li>
+        <li>If something works, keep it. Tweak it rather than regenerate from scratch.</li>
+        <li>Using Claude Code or Cowork? This repo's <code>CLAUDE.md</code> makes Claude follow these same rules automatically, and <code>SKILL.md</code> is a reusable "token-wise" skill.</li>
+      </ul>
+    </div>
+
+    <footer>HO14 · Solo · ForgeMind AI — AI Productivity Essentials · Module M18 (Week 6)</footer>
   </div>
-
-  <div class="card">
-    <div class="card-top">
-      <span class="card-num">02</span>
-      <h3>API Fetch → Transform → Store Pipeline</h3>
-    </div>
-    <div class="card-body">
-      <p>Automate the full ETL cycle: pull JSON from a public API, rename and reshape fields to match your schema, and build a clean historical dataset automatically.</p>
-      <a href="./samples/sample-02/" class="btn">View Sample →</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-top">
-      <span class="card-num">03</span>
-      <h3>File Drop Watcher &amp; Processor</h3>
-    </div>
-    <div class="card-body">
-      <p>Eliminate manual file handling. Drop a CSV into a watched folder and have Claude automatically compute summaries, add totals, and archive the processed copy.</p>
-      <a href="./samples/sample-03/" class="btn">View Sample →</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-top">
-      <span class="card-num">04</span>
-      <h3>Scheduled Report Emailer</h3>
-    </div>
-    <div class="card-body">
-      <p>Replace the weekly ritual of opening a CSV, calculating totals, and writing a team email. Get a formatted HTML report sent to every inbox every Monday — automatically.</p>
-      <a href="./samples/sample-04/" class="btn">View Sample →</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-top">
-      <span class="card-num">05</span>
-      <h3>Two-Source Sync Job</h3>
-    </div>
-    <div class="card-body">
-      <p>Stop comparing two spreadsheets by eye. Automatically detect records present in your primary source but missing from the secondary, and sync only the delta — idempotently.</p>
-      <a href="./samples/sample-05/" class="btn">View Sample →</a>
-    </div>
-  </div>
-
-</div>
-
-<footer>
-  Forgemind AI · Claude Course · HO14 · <a href="https://github.com/Forgemind-git/ho14-workflow-automation">github.com/Forgemind-git/ho14-workflow-automation</a>
-</footer>
-
+  <script>lucide.createIcons();</script>
 </body>
 </html>
