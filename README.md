@@ -52,3 +52,33 @@ keep a mistake from burning your whole session:
   automatically, and `SKILL.md` is a reusable "token-wise" skill.
 
 If you do hit the limit, it resets after a few hours — nothing you've saved is lost.
+
+## Run it locally
+
+This is a **scheduled, coded automation** — it runs on your own machine, not on the GitHub Pages
+page (Pages is static and can't run a cron job). To run and schedule it:
+
+```bash
+# clone your copy of this repo, then from your project folder:
+pip install -r requirements.txt
+
+# run it once to make sure it works:
+python main.py
+
+# then schedule it with cron so it runs unattended.
+# edit your crontab:
+crontab -e
+
+# example — run every day at 8am:
+0 8 * * * cd /path/to/your/project && /usr/bin/python3 main.py >> run.log 2>&1
+```
+
+On Windows, use **Task Scheduler** instead of cron to run the same command on a schedule. Each
+`samples/sample-0X/` folder has its own README with the exact run command and a suggested
+schedule. Keep a before/after time log so you can measure the minutes saved.
+
+## Deploying to a server
+
+You don't have to host this anywhere to pass — it runs locally on your own schedule. If you later
+want it running unattended on a public server (so it fires even when your laptop is off), the
+course covers that once: **See the Week-6 deploy walkthrough**.
