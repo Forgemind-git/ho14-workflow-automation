@@ -58,6 +58,7 @@
   .tip{background:#FDF6F6;border:1px solid #F3C6C6;border-radius:8px;padding:16px 18px;margin-bottom:6px;}
   .tip .th{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--primary);margin-bottom:6px;}
   .tip p{margin:0;font-size:13px;color:var(--textSec);line-height:1.6;}
+  .tip ul{margin:6px 0 0;padding-left:18px;font-size:13px;color:var(--textSec);line-height:1.6;}
   code{font-family:var(--mono);font-size:12px;background:#F1F0EA;padding:1px 5px;border-radius:4px;}
   footer{border-top:1px solid var(--border);margin-top:40px;padding-top:18px;font-size:12px;color:var(--textMuted);font-family:var(--mono);text-align:center;}
   @media(max-width:680px){.grid{grid-template-columns:1fr;} h1{font-size:24px;}}
@@ -92,6 +93,15 @@
       <div class="sample"><span class="num">3</span><h3>File watcher</h3><span class="ready"><i data-lucide="check"></i> Ready to copy &amp; use</span><p>Files land in a folder and someone has to process each one by hand. Build a Cowork file-watcher.</p><a class="go" href="./samples/sample-03/">Open sample <i data-lucide="arrow-right"></i></a></div>
       <div class="sample"><span class="num">4</span><h3>Report emailer</h3><span class="ready"><i data-lucide="check"></i> Ready to copy &amp; use</span><p>Your boss expects the same report emailed every week. Build a Cowork scheduled job.</p><a class="go" href="./samples/sample-04/">Open sample <i data-lucide="arrow-right"></i></a></div>
       <div class="sample"><span class="num">5</span><h3>Sync job</h3><span class="ready"><i data-lucide="check"></i> Ready to copy &amp; use</span><p>Two of your systems drift out of sync. Build a Cowork sync job.</p><a class="go" href="./samples/sample-05/">Open sample <i data-lucide="arrow-right"></i></a></div>
+    </div>
+
+    <div class="tip">
+      <div class="th"><i data-lucide="clock"></i> Runs on your machine (or your server)</div>
+      <ul>
+        <li>This is a <b>scheduled, coded automation</b> you run on your own machine — not on this GitHub&nbsp;Pages page. Pages is static, so it can't run a cron job; it only hosts this landing page and the README.</li>
+        <li>Follow the README to run the script once, then schedule it with <b>cron</b> (or Task Scheduler) so it runs unattended.</li>
+        <li>Want it running on a public server later? The course covers that once — see the <b>Week-6 deploy walkthrough</b> video.</li>
+      </ul>
     </div>
 
     <footer>HO14 · Solo · ForgeMind AI — AI Productivity Essentials · Module M18 (Week 6)</footer>
